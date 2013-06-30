@@ -17,7 +17,7 @@ module RailsAdmin
       def new(m)
         m = m.is_a?(Class) ? m : m.constantize
         (am = old_new(m)).model && am.adapter ? am : nil
-      rescue LoadError, NameError
+      rescue LoadError, NameError, RuntimeError
         puts "[RailsAdmin] Could not load model #{m}, assuming model is non existing. (#{$!})" unless Rails.env.test?
         nil
       end
